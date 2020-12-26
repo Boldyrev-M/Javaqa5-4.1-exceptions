@@ -20,26 +20,33 @@ class ProductRepositoryTest {
     }
 
 
-  @Test
-  void removeByIdCorrect() {
-    Book book1 = new Book(1, "Book Name", 100, "A.S. Pushkin", 100, 1999);
-    repository.save(book1);
-    repository.removeById(1);
-    Product[] expected = new Product[0];
-    Product[] actual = repository.findAll();
-    assertArrayEquals(expected, actual);
+    @Test
+    void removeByIdCorrect() {
+        Book book1 = new Book(1, "Book Name", 100, "A.S. Pushkin", 100, 1999);
+        repository.save(book1);
+        repository.removeById(1);
+        Product[] expected = new Product[0];
+        Product[] actual = repository.findAll();
+        assertArrayEquals(expected, actual);
+    }
 
-  }
-  @Test
-  void removeByIdWithException() {
-    Book book2 = new Book(2, "Book Two Name", 100, "N.V. Gogol", 100, 1999);
-    repository.save(book2);
-      try {
-          repository.removeById(1);
-      }
-      catch (Exception e) {
+    @Test
+    void removeByIdWithExceptionTryCatch() {
+        Book book2 = new Book(2, "Book Two Name", 100, "N.V. Gogol", 100, 1999);
+        repository.save(book2);
+        try {
+            repository.removeById(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-      }
+    @Test
+    void removeByIdWithExceptionThrow() {
+        Book book2 = new Book(2, "Book Two Name", 100, "N.V. Gogol", 100, 1999);
+        repository.save(book2);
 
-  }
+        assertThrows(NotFoundException.class, () -> repository.removeById(1));
+    }
+
 }
