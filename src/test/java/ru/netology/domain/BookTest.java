@@ -21,7 +21,7 @@ class BookTest {
     }
   }
 
-  //  This test should fail!!!!
+//    /*This test should fail!!!!*/
 //  @Test
 //  public void shouldNotCastToDifferentClass() {
 //    Product product = new Book();
